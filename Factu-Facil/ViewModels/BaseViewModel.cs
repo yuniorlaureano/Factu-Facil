@@ -5,10 +5,10 @@ using System.Runtime.CompilerServices;
 
 using Xamarin.Forms;
 
-using Factu_Facil.Models;
-using Factu_Facil.Services;
+using FactuFacil.Models;
+using FactuFacil.Services;
 
-namespace Factu_Facil.ViewModels
+namespace FactuFacil.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Xamarin.Essentials;
-using Factu_Facil.Models;
+using FactuFacil.Models;
 
-namespace Factu_Facil.Services
+namespace FactuFacil.Services
 {
     public class AzureDataStore : IDataStore<Item>
     {

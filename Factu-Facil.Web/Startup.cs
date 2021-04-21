@@ -7,9 +7,17 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Factu_Facil.Models;
+using FactuFacil.Models;
+using Microsoft.EntityFrameworkCore.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using FactuFacil.Repository;
+using FactuFacil.Entity;
+using FactuFacil.Service;
+using System.Security.Cryptography;
+using FactuFacil.Web.Util;
+using FactuFacil.Web.Infrastructure;
 
-namespace Factu_Facil.Web
+namespace FactuFacil.Web
 {
     public class Startup
     {
@@ -23,8 +31,31 @@ namespace Factu_Facil.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddSingleton<IItemRepository, ItemRepository>();
+            services.AddCors();
+            services.AddControllers();           
+
+            services.AddDbContext<FactuFacilContext>(options => 
+            {
+                options.UseSqlite("Data Source=FactuFacil.db", m => m.MigrationsAssembly("FactuFacil.Web"));
+            });
+
+            services.AddSwaggerDocumentation();
+
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+
+            services.AddScoped<IClientRepository, ClientRepository>();
+            services.AddScoped<IInvoiceRepository, InvoiceRepository>();
+            services.AddScoped<IInvoiceDetailRepository, InvoiceDetailRepository>();
+            services.AddScoped<IInventoryRepository, InventoryRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddScoped<IClientService, ClientService>();
+            services.AddScoped<IInvoiceService, InvoiceService>();
+            services.AddScoped<IInvoiceDetailService, InvoiceDetailService>();
+            services.AddScoped<IInventoryService, InventoryService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -34,6 +65,17 @@ namespace Factu_Facil.Web
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(x => x
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+
+            app.UseSwagger();
+
+            app.UseSwaggerDocumentation();
+
+            app.UseMiddleware<JwtMiddleware>();
+
             app.UseHttpsRedirection();
             app.UseRouting();
 
@@ -42,5 +84,7 @@ namespace Factu_Facil.Web
                 endpoints.MapControllers();
             });
         }
+    
+        
     }
 }

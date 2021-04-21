@@ -3,10 +3,10 @@ using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-using Factu_Facil.Models;
-using Factu_Facil.ViewModels;
+using FactuFacil.Models;
+using FactuFacil.ViewModels;
 
-namespace Factu_Facil.Views
+namespace FactuFacil.Views
 {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer

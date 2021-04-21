@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Factu_Facil.Models
+namespace FactuFacil.Models
 {
     public class Item
     {

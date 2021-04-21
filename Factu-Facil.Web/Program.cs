@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Factu_Facil.Web
+namespace FactuFacil.Web
 {
     public class Program
     {

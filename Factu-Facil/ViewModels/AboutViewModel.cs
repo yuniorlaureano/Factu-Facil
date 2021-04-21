@@ -3,7 +3,7 @@ using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
-namespace Factu_Facil.ViewModels
+namespace FactuFacil.ViewModels
 {
     public class AboutViewModel : BaseViewModel
     {

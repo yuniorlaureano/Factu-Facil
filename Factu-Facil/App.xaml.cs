@@ -2,10 +2,10 @@
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Factu_Facil.Services;
-using Factu_Facil.Views;
+using FactuFacil.Services;
+using FactuFacil.Views;
 
-namespace Factu_Facil
+namespace FactuFacil
 {
     public partial class App : Application
     {

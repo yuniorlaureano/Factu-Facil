@@ -7,7 +7,7 @@
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{6968b3a4-1835-46a3-ac5c-1ae33b475983}</TemplateGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Factu_Facil.Droid</RootNamespace>
+    <RootNamespace>FactuFacil.Droid</RootNamespace>
     <AssemblyName>Factu-Facil.Android</AssemblyName>
     <Deterministic>True</Deterministic>
     <AndroidApplication>True</AndroidApplication>
@@ -90,9 +90,9 @@
     <AndroidResource Include="Resources\drawable\tab_feed.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Factu-Facil\Factu-Facil.csproj">
-      <Project>{762AB2E0-2964-4352-AB2F-DD45F5651658}</Project>
-      <Name>Factu-Facil</Name>
+    <ProjectReference Include="..\Factu-Facil\FactuFacil.csproj">
+      <Project>{BCEECF6E-F803-4169-B59A-45E10F9E3DF5}</Project>
+      <Name>FactuFacil</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

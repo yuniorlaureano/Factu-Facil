@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Factu_Facil.Services
+namespace FactuFacil.Services
 {
     public interface IDataStore<T>
     {

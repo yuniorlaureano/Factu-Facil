@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Factu_Facil.Models;
+using FactuFacil.Models;
 
-namespace Factu_Facil.Services
+namespace FactuFacil.Services
 {
     public class MockDataStore : IDataStore<Item>
     {

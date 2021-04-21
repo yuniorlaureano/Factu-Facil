@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
-using Factu_Facil.Models;
-using Factu_Facil.Views;
+using FactuFacil.Models;
+using FactuFacil.Views;
 
-namespace Factu_Facil.ViewModels
+namespace FactuFacil.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {

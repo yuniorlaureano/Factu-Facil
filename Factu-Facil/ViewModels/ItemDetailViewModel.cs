@@ -1,8 +1,8 @@
 ﻿using System;
 
-using Factu_Facil.Models;
+using FactuFacil.Models;
 
-namespace Factu_Facil.ViewModels
+namespace FactuFacil.ViewModels
 {
     public class ItemDetailViewModel : BaseViewModel
     {

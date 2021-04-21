@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 
-namespace Factu_Facil
+namespace FactuFacil
 {
     public partial class AppShell : Xamarin.Forms.Shell
     {

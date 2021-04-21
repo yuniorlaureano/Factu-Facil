@@ -9,7 +9,7 @@
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{89a4fe7c-635d-49c9-8d8c-5cd363c0d68d}</TemplateGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Factu_Facil.iOS</RootNamespace>
+    <RootNamespace>FactuFacil.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>Factu-Facil.iOS</AssemblyName>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
@@ -139,9 +139,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\Factu-Facil\Factu-Facil.csproj">
-      <Project>{762AB2E0-2964-4352-AB2F-DD45F5651658}</Project>
-      <Name>Factu-Facil</Name>
+    <ProjectReference Include="..\Factu-Facil\FactuFacil.csproj">
+      <Project>{BCEECF6E-F803-4169-B59A-45E10F9E3DF5}</Project>
+      <Name>FactuFacil</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

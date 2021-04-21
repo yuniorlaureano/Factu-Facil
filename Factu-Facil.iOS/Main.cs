@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace Factu_Facil.iOS
+namespace FactuFacil.iOS
 {
     public class Application
     {
