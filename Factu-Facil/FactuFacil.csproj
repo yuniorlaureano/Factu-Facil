@@ -12,17 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\AboutPageTest.xaml.cs">
-      <DependentUpon>AboutPageTest.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\ItemDetailPageTest.xaml.cs">
-      <DependentUpon>ItemDetailPageTest.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\ItemsPageTest.xaml.cs">
-      <DependentUpon>ItemsPageTest.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\NewItemPageTest.xaml.cs">
-      <DependentUpon>NewItemPageTest.xaml</DependentUpon>
+    <Compile Update="Views\AboutPageText.xaml.cs">
+      <DependentUpon>AboutPageText.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>
