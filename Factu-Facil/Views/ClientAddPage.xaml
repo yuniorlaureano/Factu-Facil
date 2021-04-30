@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FactuFacil.Views.ClientAddPage"
+             Title="Neuvo Producto">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="ToolItemDelete" IconImageSource="tab_delete.png" Clicked="Delete_Clicked" />
+        <!--<ToolbarItem Text="Save" Clicked="Save_Clicked" />-->
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="Nombre" FontSize="Medium" />
+            <Entry x:Name="txtName" Text="{Binding Client.Name, Mode=TwoWay}" Placeholder="Nombre" FontSize="Small" />
+            <Label Text="Apellido" FontSize="Medium" />
+            <Entry x:Name="txtLastName" Text="{Binding Client.LastName, Mode=TwoWay}" Placeholder="Last Nombre" FontSize="Small" />            
+            <Label Text="Cédula" FontSize="Medium" />
+            <Entry x:Name="txtIdentificationCard" Text="{Binding Client.IdentificationCard, Mode=TwoWay}" Placeholder="Cédula" FontSize="Small" />
+            <Label Text="Teléfono" FontSize="Medium" />
+            <Entry x:Name="txtPhone" Text="{Binding Client.Phone, Mode=TwoWay}" Placeholder="Teléfono" FontSize="Small" />
+            <Label Text="Dirección" FontSize="Medium" />
+            <Entry x:Name="txtAddress" Text="{Binding Client.Address, Mode=TwoWay}" Placeholder="Dirección" FontSize="Small" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Text="Guardar" x:Name="Save" Clicked="Save_Clicked" />
+                <Button Grid.Column="1" Text="Cancelar" x:Name="Cancel" Clicked="Cancel_Clicked" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+    
+</ContentPage>
