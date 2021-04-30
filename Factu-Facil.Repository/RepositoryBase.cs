@@ -63,14 +63,14 @@ namespace FactuFacil.Repository
                 includes.Aggregate(query, (current, property) => current.Include(property));
             }
 
-            return await query.FirstOrDefaultAsync() ?? throw new ArgumentException($"La no se encontro el registro");
+            return await query.FirstOrDefaultAsync() ?? throw new ArgumentException($"No se encontro el registro");
         }
 
         public void Update(T entity, Func<FactuFacilContext, T> func = null)
         {
             if (entity == null)
             {
-                throw new ArgumentException($"La no se encontro el registro");
+                throw new ArgumentException($"No se encontro el registro");
             }
 
             if (func != null)

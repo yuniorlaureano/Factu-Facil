@@ -1,42 +1,80 @@
-﻿using System;
+﻿using Xamarin.Forms;
+using FactuFacil.Models;
 using Xamarin.Essentials;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using FactuFacil.Services;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System;
+using System.Net;
+using System.Security.Authentication;
 using FactuFacil.Views;
 
 namespace FactuFacil
 {
     public partial class App : Application
     {
-        //TODO: Replace with *.azurewebsites.net url after deploying backend to Azure
-        //To debug on Android emulators run the web backend against .NET Core not IIS
-        //If using other emulators besides stock Google images you may need to adjust the IP address
-        public static string AzureBackendUrl =
-            DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5000" : "http://localhost:5000";
-        public static bool UseMockDataStore = true;
+        //public static string BackendUrl = DeviceInfo.Platform == DevicePlatform.Android ? "https://factufacil.azurewebsites.net";
+        public static string BackendUrl = "https://factufacil.azurewebsites.net";
+        public static AuthViewModel AuthViewModel { get; set; } = new AuthViewModel();
 
         public App()
         {
             InitializeComponent();
-
-            if (UseMockDataStore)
-                DependencyService.Register<MockDataStore>();
-            else
-                DependencyService.Register<AzureDataStore>();
             MainPage = new AppShell();
         }
 
-        protected override void OnStart()
+        protected async override void OnStart()
         {
+            try
+            {
+                AuthViewModel = await GetToken();
+            }
+            catch (Exception)
+            {
+                new NavigationPage(new UserLoginPage());
+            }
         }
 
         protected override void OnSleep()
         {
+
         }
 
-        protected override void OnResume()
+        protected async override void OnResume()
         {
+            try
+            {
+                AuthViewModel = await GetToken();
+            }
+            catch (Exception)
+            {
+                new NavigationPage(new UserLoginPage());
+            }
+        }
+
+        public static async void AddToken(AuthViewModel auth, string tokenName = "jwt-token")
+        {
+            string serializedJsonUser = JsonConvert.SerializeObject(auth);
+            await SecureStorage.SetAsync(tokenName, serializedJsonUser);
+        }
+
+        public static async Task<AuthViewModel> GetToken(string tokenName = "jwt-token")
+        {
+            AuthViewModel auth = new AuthViewModel();
+            try
+            {
+                string jsonUser = await SecureStorage.GetAsync(tokenName);
+                auth = JsonConvert.DeserializeObject<AuthViewModel>(jsonUser);
+                if (string.IsNullOrWhiteSpace(auth.Token))
+                {
+                    throw new AuthenticationException("Usuario no logueado");
+                }
+            }
+            catch (Exception)
+            {
+                throw new AuthenticationException("Usuario no logueado");
+            }
+
+            return auth;
         }
     }
 }

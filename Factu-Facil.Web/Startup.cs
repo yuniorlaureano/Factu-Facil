@@ -36,7 +36,7 @@ namespace FactuFacil.Web
 
             services.AddDbContext<FactuFacilContext>(options => 
             {
-                options.UseSqlite("Data Source=FactuFacil.db", m => m.MigrationsAssembly("FactuFacil.Web"));
+                options.UseSqlServer(Configuration.GetConnectionString("Default"), m => m.MigrationsAssembly("FactuFacil.Web"));
             });
 
             services.AddSwaggerDocumentation();

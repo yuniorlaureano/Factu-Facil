@@ -10,20 +10,21 @@ namespace FactuFacil.Services
 {
     public class HttpClientServiceBase<T>
     {
-        private HttpClient client;
-        private string baseEndpoint;
-        bool IsConnected => Connectivity.NetworkAccess == NetworkAccess.Internet;
+        protected HttpClient client;
+        protected string baseEndpoint;
+        public bool IsConnected => Connectivity.NetworkAccess == NetworkAccess.Internet;
 
-        public HttpClientServiceBase(string baeUrl, string baseEndpoint)
+        public HttpClientServiceBase(string baeUrl, string baseEndpoint, string token)
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri(baeUrl); //http://10.0.2.2:5000
+            client.BaseAddress = new Uri(baeUrl);
             this.baseEndpoint = baseEndpoint;
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
         }
 
-        public static HttpClientServiceBase<TBase> SetBaseUrl<TBase>(string baeUrl, string baseEndpoint)
+        public static HttpClientServiceBase<TBase> SetBaseUrl<TBase>(string baeUrl, string baseEndpoint, string token)
         {
-            return new HttpClientServiceBase<TBase>(baeUrl, baseEndpoint);
+            return new HttpClientServiceBase<TBase>(baeUrl, baseEndpoint, token);
         }
         
         public async Task<IEnumerable<T>> GetAsync()
@@ -32,6 +33,7 @@ namespace FactuFacil.Services
 
             if (IsConnected)
             {
+
                 var json = await client.GetStringAsync($"api/{baseEndpoint}");
                 models = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<T>>(json));
             }
@@ -68,10 +70,7 @@ namespace FactuFacil.Services
                 return false;
 
             var serializedModel = JsonConvert.SerializeObject(model);
-            var buffer = Encoding.UTF8.GetBytes(serializedModel);
-            var byteContent = new ByteArrayContent(buffer);
-
-            var response = await client.PutAsync(new Uri($"api/{baseEndpoint}"), byteContent);
+            var response = await client.PutAsync($"api/{baseEndpoint}", new StringContent(serializedModel, Encoding.UTF8 ,"application/json"));
 
             return response.IsSuccessStatusCode;
         }

@@ -10,7 +10,7 @@ namespace FactuFacil.Models.EntityConfiguration
         {
             builder.HasKey(p => p.Id);
             builder.HasOne(p => p.UpdatedBy);
-            builder.HasOne(p => p.UpdatedBy);
+            builder.HasOne(p => p.UpdatedBy);            
         }
     }
 }

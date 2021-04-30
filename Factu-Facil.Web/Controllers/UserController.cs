@@ -118,25 +118,18 @@ namespace FactuFacil.Web.Controllers
             return Ok();
         }
 
+
         [HttpPost("auth")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<User>> Authenticate(AuthenticateRequest request)
+        public async Task<ActionResult<AuthenticateResponse>> Authenticate([FromBody]AuthenticateRequest request)
         {
             try
             {
                 var response = await _userService.Authenticate(request);
                 return Ok(response);
             }
-            catch (ArgumentNullException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch (AuthenticationException ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
