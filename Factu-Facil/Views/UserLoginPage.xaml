@@ -6,12 +6,6 @@
              mc:Ignorable="d"
              x:Class="FactuFacil.Views.UserLoginPage"
              Title="Login">
-    
-    <!--<ContentPage.ToolbarItems>
-        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
-        <ToolbarItem Text="Save" Clicked="Save_Clicked" />
-    </ContentPage.ToolbarItems>-->
-    
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" Spacing="40" Padding="30">
             <BoxView HeightRequest="10" />

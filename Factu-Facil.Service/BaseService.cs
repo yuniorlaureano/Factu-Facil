@@ -40,12 +40,12 @@ namespace FactuFacil.Service
 
         public  Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> expression = null, params Expression<Func<T, object>>[] includes)
         {
-            return _repository.GetAll(expression);
+            return _repository.GetAll(expression, includes);
         }
 
         public Task<T> GetOne(Expression<Func<T, bool>> expression, params Expression<Func<T, object>>[] includes)
         {
-            return _repository.GetOne(expression);
+            return _repository.GetOne(expression, includes);
         }
 
         public Task Update(T entity, Func<FactuFacilContext, T> func = null)

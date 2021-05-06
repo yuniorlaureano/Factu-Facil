@@ -32,12 +32,12 @@ namespace FactuFacil.Views
 
         private void btnUsuario_Clicked(object sender, EventArgs e)
         {
-
+            
         }
 
-        private void btnIventario_Clicked(object sender, EventArgs e)
+        private async void btnIventario_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new InventoryPage());
         }
 
         private void btnSalir_Clicked(object sender, EventArgs e)

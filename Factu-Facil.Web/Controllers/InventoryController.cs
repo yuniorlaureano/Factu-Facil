@@ -16,9 +16,9 @@ namespace FactuFacil.Web.Controllers
     [ApiController]
     public class InventoryController : BaseController
     {
-        private readonly InventoryService _inventoryService;
+        private readonly IInventoryService _inventoryService;
 
-        public InventoryController(InventoryService inventoryService)
+        public InventoryController(IInventoryService inventoryService)
         {
             _inventoryService = inventoryService;
         }
@@ -27,7 +27,8 @@ namespace FactuFacil.Web.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<Inventory>>> Get()
         {
-            return Ok(await _inventoryService.GetAll(p => true, i => i.Product, i => i.CreatedBy, i => i.UpdatedBy));
+            var inventory = await _inventoryService.GetAll(p => true);
+            return Ok(inventory);
         }
 
         [HttpGet("{id}")]
@@ -37,7 +38,7 @@ namespace FactuFacil.Web.Controllers
         {
             try
             {
-                return Ok(await _inventoryService.GetOne(p => true, i => i.Product, i => i.CreatedBy, i => i.UpdatedBy));
+                return Ok(await _inventoryService.GetOne(p => p.Id == id));
             }
             catch (ArgumentException ex)
             {
@@ -53,18 +54,15 @@ namespace FactuFacil.Web.Controllers
             try
             {
                 var inventory = new Inventory();
+
                 inventory.Id = Guid.NewGuid();
                 inventory.Amount = model.Amount;
                 inventory.ProductId = model.ProductId;
-                inventory.Product.Name = model.Product.Name;
-                inventory.Product.Description = model.Product.Description;
-                inventory.Product.SalePrice = model.Product.SalePrice;
-                inventory.Product.PurchasePrice = model.Product.PurchasePrice;
-                inventory.Product.Code = model.Product.Code;
                 inventory.CreatedAt = DateTime.Now;
                 inventory.CreatedById = GetUser().Id;
                 inventory.UpdatedAt = DateTime.Now;
                 inventory.UpdatedById = GetUser().Id;
+
                 await _inventoryService.Add(inventory);
                 return CreatedAtAction(nameof(Get), new { inventory.Id });
             }
@@ -81,14 +79,9 @@ namespace FactuFacil.Web.Controllers
         {
             try
             {
-                var inventory = await _inventoryService.GetOne(x => x.Id == model.Id, i => i.Product);
+                var inventory = await _inventoryService.GetOne(x => x.Id == model.Id);
                 inventory.Amount = model.Amount;
                 inventory.ProductId = model.ProductId;
-                inventory.Product.Name = model.Product.Name;
-                inventory.Product.Description = model.Product.Description;
-                inventory.Product.SalePrice = model.Product.SalePrice;
-                inventory.Product.PurchasePrice = model.Product.PurchasePrice;
-                inventory.Product.Code = model.Product.Code;
                 inventory.UpdatedAt = DateTime.Now;
                 inventory.UpdatedById = GetUser().Id;
 

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FactuFacil.Views.InventoryAddPage"
+             Title="Neuvo Inventario">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="ToolItemDelete" IconImageSource="tab_delete.png" Clicked="Delete_Clicked" />
+     </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="15">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Column="0">
+                    <Label Text="Código Producto" FontSize="Medium" />
+                    <Entry IsReadOnly="True" x:Name="txtCode" Text="{Binding Inventory.Product.Code}" Placeholder="Código" FontSize="Small" />
+                    <Label Text="Nombre Producto" FontSize="Medium" />
+                    <Entry IsReadOnly="True" x:Name="txtName" Text="{Binding Inventory.Product.Name}" Placeholder="Nombre" FontSize="Small" />
+                </StackLayout>
+                <Button Grid.Column="1" Text="Agregar Producto" x:Name="BuscarProducto" Clicked="BuscarProducto_Clicked" />
+            </Grid>
+            <Label Text="Contidad" FontSize="Medium" />
+            <Entry Keyboard="Numeric" x:Name="txtAmount" Text="{Binding Amount, Mode=TwoWay}" Placeholder="Precio de Venta" FontSize="Small" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Text="Guardar" x:Name="Save" Clicked="Save_Clicked" />
+                <Button Grid.Column="1" Text="Cancelar" x:Name="Cancel" Clicked="Cancel_Clicked" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

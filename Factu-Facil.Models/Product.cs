@@ -11,5 +11,6 @@ namespace FactuFacil.Entity
         public float SalePrice { get; set; }
         public float PurchasePrice { get; set; }
         public string Code { get; set; }
+
     }
 }

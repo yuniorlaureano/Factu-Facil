@@ -8,10 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using FactuFacil.Models;
-using FactuFacil.Views;
-using FactuFacil.ViewModels;
 using FactuFacil.Services;
-using System.Collections.ObjectModel;
 
 namespace FactuFacil.Views
 {

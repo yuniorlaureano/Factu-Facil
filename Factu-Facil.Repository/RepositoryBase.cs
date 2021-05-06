@@ -48,7 +48,10 @@ namespace FactuFacil.Repository
 
             if (includes != null)
             {
-                includes.Aggregate(query, (current, property) => current.Include(property));
+                foreach (var include in includes)
+                {
+                    query.Include(include);
+                }
             }
 
             return await query.ToListAsync();
@@ -60,7 +63,10 @@ namespace FactuFacil.Repository
 
             if (includes != null )
             {
-                includes.Aggregate(query, (current, property) => current.Include(property));
+                foreach (var include in includes)
+                {
+                    query.Include(include);
+                }
             }
 
             return await query.FirstOrDefaultAsync() ?? throw new ArgumentException($"No se encontro el registro");

@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="FactuFacil.Views.ClientAddPage"
-             Title="Neuvo Producto">
+             Title="Neuvo Cliente">
     
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="ToolItemDelete" IconImageSource="tab_delete.png" Clicked="Delete_Clicked" />

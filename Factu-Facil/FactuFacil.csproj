@@ -18,14 +18,17 @@
     <Compile Update="Views\ClientsPage.xaml.cs">
       <DependentUpon>ClientsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\InventoryPage.xaml.cs">
+      <DependentUpon>InventoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\InventoryAddPage.xaml.cs">
+      <DependentUpon>InventoryAddPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\ProductsPage.xaml.cs">
       <DependentUpon>ProductsPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\AboutPageText.xaml.cs">
-      <DependentUpon>AboutPageText.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\ProductAddPage.xaml.cs">
       <DependentUpon>ProductAddPage.xaml</DependentUpon>
@@ -33,5 +36,9 @@
     <Compile Update="Views\UserLoginPage.xaml.cs">
       <DependentUpon>UserLoginPage.xaml</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
   </ItemGroup>
 </Project>

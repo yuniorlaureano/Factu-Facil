@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace FactuFacil.Web.Models
+namespace FactuFacil.Models
 {
-    public class InventoryViewModel
+    public class Inventory
     {
         public Guid Id { get; set; }
         public int Amount { get; set; }
         public Guid ProductId { get; set; }
+        public Product Product { get; set; }
     }
 }

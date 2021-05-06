@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 using FactuFacil.Models;
-using FactuFacil.Views;
-using FactuFacil.ViewModels;
 using FactuFacil.Services;
-using System.Collections.ObjectModel;
 
 namespace FactuFacil.Views
 {
@@ -19,18 +12,29 @@ namespace FactuFacil.Views
     public partial class ProductsPage : ContentPage
     {
         private HttpClientServiceBase<Product> httpClientServiceBase;
+        private bool isInventoryPage;
 
-        public ProductsPage()
+        public ProductsPage(bool isInventoryPage = false)
         {
             InitializeComponent();
             httpClientServiceBase = new HttpClientServiceBase<Product>(App.BackendUrl, UrlApiConstants.PRODUCT, App.AuthViewModel.Token);
+            this.isInventoryPage = isInventoryPage;
         }
 
         async void OnItemSelected(object sender, EventArgs args)
         {
-            var layout = (BindableObject)sender;
-            var item = (Product)layout.BindingContext;
-            await Navigation.PushAsync(new ProductAddPage(item));
+            Product product = GetProductFromItemList(sender);
+
+            if (!isInventoryPage)
+            {
+                await Navigation.PushAsync(new ProductAddPage(product));
+                return;
+            }
+
+            Inventory inventory = new Inventory();
+            inventory.Product = product;
+            inventory.ProductId = product.Id;
+            await Navigation.PushAsync(new InventoryAddPage(inventory));
         }
 
         async void Add_Clicked(object sender, EventArgs e)
@@ -48,6 +52,12 @@ namespace FactuFacil.Views
         {
             var products = await httpClientServiceBase.GetAsync();
             ItemsCollectionView.ItemsSource = products.ToList();
+        }
+
+        private Product GetProductFromItemList(object sender)
+        {
+            var layout = (BindableObject)sender;
+            return (Product)layout.BindingContext;
         }
     }
 }

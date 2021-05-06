@@ -37,7 +37,7 @@ namespace FactuFacil.Web.Controllers
         {
             try
             {
-                return Ok(await _clientService.GetOne(p => true, i => i.CreatedBy, i => i.UpdatedBy));
+                return Ok(await _clientService.GetOne(p => p.Id == id, i => i.CreatedBy, i => i.UpdatedBy));
             }
             catch (ArgumentException ex)
             {

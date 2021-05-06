@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="FactuFacil.Views.ClientsPage"
-             Title="{Binding Title}">
+             Title="Listado de Cliente">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="add.png" Clicked="Add_Clicked" />

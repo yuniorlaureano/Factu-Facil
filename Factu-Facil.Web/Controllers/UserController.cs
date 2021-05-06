@@ -39,7 +39,7 @@ namespace FactuFacil.Web.Controllers
         {
             try
             {
-                return Ok(await _userService.GetOne(p => true));
+                return Ok(await _userService.GetOne(p => p.Id == id));
             }
             catch (ArgumentException ex)
             {
